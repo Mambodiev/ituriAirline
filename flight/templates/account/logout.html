@@ -1,0 +1,73 @@
+
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+      <div>
+          <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900">
+            {% trans "Sign Out" %}
+          </h2>
+        <p class="mt-2 text-sm text-center text-gray-600">{% trans 'Are you sure you want to sign out?' %}</p>
+      </div>
+      <form class="mt-8 space-y-6" id="signup_form" method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+
+       
+       
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <div>
+            <button type="submit"
+                    class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-5 h-5 text-white group-hover:text-white bi bi-exclamation-lg" viewBox="0 0 16 16">
+                      <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0L7.005 3.1ZM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"/>
+                    </svg>
+                </span>
+                {% trans 'Se deconnecter' %}
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Sign Out" %}</h1>
+
+<p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button type="submit">{% trans 'Sign Out' %}</button>
+</form>
+
+
+{% endblock %} {% endcomment %}
+
+
+
+

@@ -1,0 +1,119 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900">
+            {% trans "Sign In" %}
+        </h2>
+        <p class="mt-6 text-center">
+          Or
+          {% blocktrans %}If you have not created an account yet, then please
+          <a href="{{ signup_url }}" class="font-medium text-indigo-900 hover:text-indigo-900">sign up</a> first.{% endblocktrans %}
+        </p>
+    </div>
+    <form class="mt-8 space-y-6" id="signup_form" method="post" action="{% url 'account_login' %}">
+      {% csrf_token %}
+
+      {{ form|crispy }}
+
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <p class="mt-2 text-sm text-center text-indigo-900">
+        <a href="{% url 'account_reset_password' %}" class="font-medium text-indigo-900 hover:text-indigo-900">
+          {% trans "Forgot Password?" %}
+        </a>
+      </p>
+      <div>
+          <button type="submit"
+                  class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-900 border border-transparent border-solid rounded-md group hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                  <svg class="w-5 h-5 text-white-500 group-hover:text-white-400"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true">
+                      <path fill-rule="evenodd"
+                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                            clip-rule="evenodd"/>
+                  </svg>
+              </span>
+              {% trans "Sign In" %}
+          </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+{% comment %} {% extends "pages/base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+          {% trans "Sign In" %}
+        </h2>
+
+        <p class="mt-6 text-center">
+          Or
+          {% blocktrans %}If you have not created an account yet, then please
+          <a href="{{ signup_url }}" class="font-medium text-indigo-900 hover:text-indigo-900">sign up</a> first.{% endblocktrans %}</p>
+    </div>
+
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+
+
+      {{ form|crispy }}
+
+      <input type="hidden" name="remember" value="true" />
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <p class="mt-6 text-sm text-gray-600">
+        <a href="{% url 'account_reset_password' %}" class="font-medium text-indigo-900 hover:text-indigo-900">
+          {% trans "Forgot Password?" %}
+        </a>
+      </p>
+
+      <div>
+        <button type="submit"
+                class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-900 border border-transparent border-solid rounded-md group hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900 mt-6 ">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <svg class="w-5 h-5 text-white group-hover:text-blue-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true">
+                    <path fill-rule="evenodd"
+                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                          clip-rule="evenodd"/>
+                </svg>
+            </span>
+            {% trans "Sign In" %}
+        </button>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
+{% endblock content %} {% endcomment %}
+
+
+
+

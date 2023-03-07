@@ -1,0 +1,111 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+{% comment %} <div class="px-3 py-2 bg-gray-100 rounded-sm">
+    <h3 class="text-3xl text-gray-900">{{ ticket.depart }}</h3>
+    <p class="text-gray-900">{{ ticket.destination }}</p>
+    <p class="text-gray-600 text-sm">${{ ticket.prix_ticket }}</p>
+
+    {% if request.user.is_staff %}
+    <div class="mt-5 py-5 border-t border-gray-200">
+        <a href="/tickets/{{ ticket.id }}/edit/" class="text-indigo-900">
+            Edit
+        </a>
+        <a href="/tickets/{{ ticket.id }}/delete/" class="ml-3 text-indigo-900">
+            Delete
+        </a>
+    </div>
+    {% endif %}
+
+</div> {% endcomment %}
+
+
+
+<div class="container px-6 py-16 mx-auto text-center mt-10">
+    <div class="flex justify-center mb-6">
+      <div class="w-full p-6 rounded-xl lg:w-4/5 border-2 border-indigo-900 hover:border-rose-500">
+        <div class="flex justify-between">
+          <p class="text-2xl">{{ticket.depart|title }} - {{ticket.destination|title }}</p>
+          <p class="text-xl">Tarif pour 1 passager</p>
+        </div>
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm">
+              <thead class="">
+                  <tr>
+                      <th scope="col" class="px-4 py-2 capitalize">
+                        Départ de
+                      </th>
+                      <th scope="col" class="px-4 py-2 capitalize">
+                        Destination
+                      </th>
+                      <th scope="col" class="px-4 py-2 capitalize">
+                        Date du vol
+                      </th>
+                      <th scope="col" class="px-4 py-2 capitalize">
+                        Heure du vol:
+                      </th>
+                      <th scope="col" class="px-4 py-2 capitalize">
+                        Réservez votre place
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="border-b">
+                      <th scope="row" class="px-3 py-2 ">
+                        <p class="text-sm ">{{ticket.depart|title }}</p>
+                      </th>
+                      <th scope="row" class="px-3 py-2 ">
+                        <p class="text-sm ">{{ticket.destination|title }}</p>
+                      </th>
+                      <td class="px-3 py-2 capitalize">
+                        <p class="text-sm ">{{ticket.date_du_vol|date:'d-M-Y' }}</p>
+                      </td>
+                      <td class="px-3 py-2">
+                        <p class="textsm ">{{ticket.heure_du_vol }}</p>
+                      </td>
+                      <td class="px-3 py-2 capitalize">
+                          <p class="mb-6  text-red-600	text-base font-semibold	">{{ticket.places_restantes }} places restantes à ce tarif</p>
+                      </td>
+                      
+                  </tr>
+                 
+              </tbody>
+          </table>
+          </button>
+          {% comment %} <a href="/tickets/{{ ticket.id }}/"
+                  class="relative flex justify-center w-full px-4 py-2 text-md font-medium text-white bg-indigo-900 border border-transparent border-solid rounded-md group hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
+              
+              {% trans "Continuer" %}
+          </a> {% endcomment %}
+            <div class="flex justify-end">           
+                <p class="px-5 py-4 mt-6 font-semibold text-xl leading-5 text-center text-white bg-indigo-900   lg:px-10 hover:bg-blue-900 text-lg">{% trans "Continuer" %}</p>
+            </div>
+          {% if request.user.is_staff %}
+          <div class="flex justify-end my-6 gap-6">
+  
+            <a href="/add-ticket/"   class="">
+              <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-indigo-900 rounded-lg hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-900 dark:bg-indigo-900 dark:hover:bg-indigo-900 dark:focus:ring-indigo-900">Créer un nouveau billet
+              </button>
+            </a>
+  
+            <a href="/tickets/{{ ticket.id }}/edit/"   class="">
+              <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-indigo-900 rounded-lg hover:bg-indigo-900 focus:ring-4 focus:outline-none focus:ring-indigo-900 dark:bg-indigo-900 dark:hover:bg-indigo-900 dark:focus:ring-indigo-900">Modifier le billet
+              </button>
+            </a>
+  
+  
+            <a  href="/tickets/{{ ticket.id }}/delete/"  class="">
+              <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-600 dark:bg-red-600 dark:hover:bg-red-600 dark:focus:ring-red-600">Effacé le billet
+              </button>
+            </a>
+  
+          </div>
+        {% endif %}
+        </div>
+      </div> 
+    </div>
+  </div>
+  
+{% endblock %}

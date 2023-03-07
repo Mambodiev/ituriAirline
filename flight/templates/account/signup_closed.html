@@ -1,0 +1,32 @@
+{% extends "account/base.html" %}
+
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Change Password" %}{% endblock %}
+
+
+{% block content %}
+<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
+    <div>
+      <h1 class="mt-6 text-2xl font-extrabold text-center text-gray-900">{% trans "Sign Up Closed" %}</h1>
+      <p class="mt-6 text-sm text-center text-indigo-900">{% trans "We are sorry, but the sign up is currently closed." %}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+{% comment %} 
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Up Closed" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Sign Up Closed" %}</h1>
+
+<p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+{% endblock %} {% endcomment %}
